@@ -15,7 +15,7 @@ gulp.task('scripts', () => {
 gulp.task('tests', ['scripts'], (done) => {
   return karma.server.start({
     configFile: __dirname + '/karma.conf.js',
-    singleRun: false
+    singleRun: (process.env.TRAVIS) ? true : false
   }, done);
 });
 
