@@ -1,0 +1,28 @@
+{
+  "name": "cookie_consent",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.babel.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/polem/cookieConsent.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/polem/cookieConsent/issues"
+  },
+  "homepage": "https://github.com/polem/cookieConsent#readme",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "jasmine": "^2.3.2",
+    "jasmine-jquery": "^2.1.1",
+    "karma": "^0.13.15"
+  }
+}
