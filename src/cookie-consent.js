@@ -5,7 +5,7 @@
   $.fn.cookieConsent = function(options) {
 
     var settings = $.extend({
-      consentCookieName: 'hasConsent',
+      consentCookieName: 'has_consent',
       bannerShowContainerClass: 'cookie-consent-banner-show',
       bannerShowClass: 'show',
       bannerSelector: '.cookie-consent-banner',
@@ -54,7 +54,7 @@
     var d = new Date();
     d.setTime(d.getTime() + (ttl * 1000));
     var expires = 'expires='+d.toUTCString();
-    document.cookie = name + '=' + value + '; ' + expires;
+    document.cookie = name + '=' + value + '; ' + expires + '; path=/';
   };
 
   CookieManager.prototype.getCookie = function(name) {
@@ -105,6 +105,7 @@
   };
 
   ConsentManager.prototype.hasConsent = function() {
+  console.log(this.getConsent());
     return this.getConsent() === true;
   };
 
@@ -150,7 +151,7 @@
 
     this.consent = consent;
 
-    if (this.consent) {
+    if (typeof consent !== 'undefined') {
       this.hideBanner();
     } else {
       this.showBanner();
@@ -166,5 +167,4 @@
   };
 
 }(jQuery));
-
 
