@@ -136,7 +136,7 @@
     this.consent = this.consentManager.getConsent();
 
     // init
-    if (!this.consent) {
+    if (typeof this.consent === 'undefined') {
       this.showBanner();
     }
   };
