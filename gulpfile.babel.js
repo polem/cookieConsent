@@ -12,6 +12,12 @@ gulp.task('scripts', () => {
   .pipe(gulp.dest('dist'));
 });
 
+gulp.task('styles', () => {
+  return gulp.src('src/*.scss')
+  .pipe($.sass().on('error', $.sass.logError))
+  .pipe(gulp.dest('dist'));
+});
+
 gulp.task('tests', ['scripts'], (done) => {
   return karma.server.start({
     configFile: __dirname + '/karma.conf.js',
@@ -19,5 +25,12 @@ gulp.task('tests', ['scripts'], (done) => {
   }, done);
 });
 
-gulp.task('default', ['scripts']);
+gulp.task('demo', ['scripts', 'styles'], function() {
+  $.connect.server({
+    root: ['demo', 'bower_components', 'dist'],
+    livereload: true
+  });
+});
+
+gulp.task('default', ['scripts', 'styles']);
 

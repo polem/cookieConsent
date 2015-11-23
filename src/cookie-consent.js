@@ -4,25 +4,24 @@
 
   $.fn.cookieConsent = function(options) {
 
-    // This is the easiest way to have default options.
     var settings = $.extend({
       consentCookieName: 'hasConsent',
-      popupOpenContainerClass: 'cookie-consent-popup-open',
-      popupOpenClass: 'open',
-      popupSelector: '.cookie-consent-popup',
+      bannerShowContainerClass: 'cookie-consent-banner-show',
+      bannerShowClass: 'show',
+      bannerSelector: '.cookie-consent-banner',
       acceptBtnSelector: '.accept',
       rejectBtnSelector: '.reject'
     }, options);
 
     var container = $(this);
-    var popup = $(settings.popupSelector);
+    var banner = $(settings.bannerSelector);
 
-    popup.find(settings.acceptBtnSelector).click(function(event) {
+    banner.find(settings.acceptBtnSelector).click(function(event) {
       event.preventDefault();
       consentManager.setConsent(true);
     });
 
-    popup.find(settings.rejectBtnSelector).click(function(event) {
+    banner.find(settings.rejectBtnSelector).click(function(event) {
       event.preventDefault();
       consentManager.setConsent(false);
     });
@@ -30,11 +29,11 @@
     var consentManager = new ConsentManager(new CookieManager(), settings.consentCookieName);
 
     var cookieControllerManager = new CookieConsentController(consentManager, function () {
-      container.addClass(settings.popupOpenContainerClass);
-      popup.addClass(settings.popupOpenClass);
+      container.addClass(settings.bannerShowContainerClass);
+      banner.addClass(settings.bannerShowClass);
     }, function () {
-      container.removeClass(settings.popupOpenContainerClass);
-      popup.removeClass(settings.popupOpenClass);
+      container.removeClass(settings.bannerShowContainerClass);
+      banner.removeClass(settings.bannerShowClass);
     });
 
     consentManager.onChange(function() {
@@ -129,7 +128,7 @@
 
     // init
     if (!this.consent) {
-      this.showPopup();
+      this.showBanner();
     }
   };
 
@@ -143,17 +142,17 @@
     this.consent = consent;
 
     if (this.consent) {
-      this.hidePopup();
+      this.hideBanner();
     } else {
-      this.showPopup();
+      this.showBanner();
     }
   };
 
-  CookieConsentController.prototype.showPopup = function() {
+  CookieConsentController.prototype.showBanner = function() {
     this.showFn.call();
   };
 
-  CookieConsentController.prototype.hidePopup = function() {
+  CookieConsentController.prototype.hideBanner = function() {
     this.hideFn.call();
   };
 

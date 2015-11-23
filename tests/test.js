@@ -4,37 +4,37 @@ describe('cookieConsent initialisation', function() {
 
   settings = {
     consentCookieName: 'hasConsent',
-    popupOpenContainerClass: 'cookie-consent-popup-open',
-    popupOpenClass: 'open',
-    popupSelector: '.cookie-consent-popup',
+    bannerShowContainerClass: 'cookie-consent-banner-open',
+    bannerShowClass: 'open',
+    bannerSelector: '.cookie-consent-banner',
     acceptBtnSelector: '.accept',
     rejectBtnSelector: '.reject'
   };
 
   beforeEach(function(){
     deleteCookies();
-    $(document.body).append('<div class="container"><div class="cookie-consent-popup">Le site utilise des cookies <a class="btn accept" href="">Accepter</a> / <a class="btn reject" href="">Rejeter</a></div></div>');
+    $(document.body).append('<div class="container"><div class="cookie-consent-banner">Le site utilise des cookies <a class="btn accept" href="">Accepter</a> / <a class="btn reject" href="">Rejeter</a></div></div>');
     el = $('.container');
     cookieConsent = el.cookieConsent(settings);
   });
 
-  it('should show popup on init', function() {
-    expect(el).toHaveClass(settings.popupOpenContainerClass);
-    expect($(settings.popupSelector)).toHaveClass(settings.popupOpenClass);
+  it('should show banner on init', function() {
+    expect(el).toHaveClass(settings.bannerShowContainerClass);
+    expect($(settings.bannerSelector)).toHaveClass(settings.bannerShowClass);
   });
 
   it('should hide popin on reject', function() {
-    $(settings.rejectBtnSelector, $(settings.popupSelector)).click();
+    $(settings.rejectBtnSelector, $(settings.bannerSelector)).click();
 
-    expect(el).not.toHaveClass(settings.popupOpenContainerClass);
-    expect($(settings.popupSelector)).not.toHaveClass(settings.popupOpenClass);
+    expect(el).not.toHaveClass(settings.bannerShowContainerClass);
+    expect($(settings.bannerSelector)).not.toHaveClass(settings.bannerShowClass);
   });
 
   it('should hide popin on accept', function() {
-    $(settings.acceptBtnSelector, $(settings.popupSelector)).click();
+    $(settings.acceptBtnSelector, $(settings.bannerSelector)).click();
 
-    expect(el).not.toHaveClass(settings.popupOpenContainerClass);
-    expect($(settings.popupSelector)).not.toHaveClass(settings.popupOpenClass);
+    expect(el).not.toHaveClass(settings.bannerShowContainerClass);
+    expect($(settings.bannerSelector)).not.toHaveClass(settings.bannerShowClass);
   });
 
 
