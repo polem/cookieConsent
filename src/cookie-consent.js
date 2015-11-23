@@ -28,6 +28,8 @@
 
     var consentManager = new ConsentManager(new CookieManager(), settings.consentCookieName);
 
+    container.data('consentManager', consentManager);
+
     var cookieControllerManager = new CookieConsentController(consentManager, function () {
       container.addClass(settings.bannerShowContainerClass);
       banner.addClass(settings.bannerShowClass);
