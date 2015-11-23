@@ -28,8 +28,6 @@
 
     var consentManager = new ConsentManager(new CookieManager(), settings.consentCookieName);
 
-    container.data('consentManager', consentManager);
-
     var cookieControllerManager = new CookieConsentController(consentManager, function () {
       container.addClass(settings.bannerShowContainerClass);
       banner.addClass(settings.bannerShowClass);
@@ -42,6 +40,8 @@
       container.trigger('cookieConsent.consent.update');
       cookieControllerManager.update();
     });
+
+    container.data('consentManager', consentManager);
 
     return this;
   };
@@ -94,11 +94,18 @@
   };
 
   ConsentManager.prototype.getConsent = function() {
-    return this.cookieManager.getCookie(this.consentCookieName);
+
+    var value = this.cookieManager.getCookie(this.consentCookieName);
+
+    if (typeof value === 'undefined') {
+      return;
+    }
+
+    return parseInt(value) === 1;
   };
 
   ConsentManager.prototype.hasConsent = function() {
-    return this.getConsent() === 1;
+    return this.getConsent() === true;
   };
 
   ConsentManager.prototype.onChange = function(consentChangeCallbackFn) {
