@@ -1,7 +1,7 @@
 .cookie-consent-banner {
   transition: all 0.2s;
   transform: translate3d(0, 50px, 0);
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width: 100%;
   background: black;
