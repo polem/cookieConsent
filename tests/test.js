@@ -8,7 +8,8 @@ describe('cookieConsent initialisation', function() {
     bannerShowClass: 'open',
     bannerSelector: '.cookie-consent-banner',
     acceptBtnSelector: '.accept',
-    rejectBtnSelector: '.reject'
+    rejectBtnSelector: '.reject',
+    ga: 'UA-23FJFFSX-3'
   };
 
   beforeEach(function(){
@@ -21,6 +22,9 @@ describe('cookieConsent initialisation', function() {
   it('should show banner on init', function() {
     expect(el).toHaveClass(settings.bannerShowContainerClass);
     expect($(settings.bannerSelector)).toHaveClass(settings.bannerShowClass);
+
+    // should disable ga
+    expect(window['ga-disable-' + settings.ga]).toBe(true);
   });
 
   it('should hide popin on reject', function() {
@@ -28,6 +32,9 @@ describe('cookieConsent initialisation', function() {
 
     expect(el).not.toHaveClass(settings.bannerShowContainerClass);
     expect($(settings.bannerSelector)).not.toHaveClass(settings.bannerShowClass);
+
+    // should disable ga
+    expect(window['ga-disable-' + settings.ga]).toBe(true);
   });
 
   it('should hide popin on accept', function() {
@@ -35,6 +42,9 @@ describe('cookieConsent initialisation', function() {
 
     expect(el).not.toHaveClass(settings.bannerShowContainerClass);
     expect($(settings.bannerSelector)).not.toHaveClass(settings.bannerShowClass);
+
+    // should enable ga
+    expect(window['ga-disable-' + settings.ga]).toBe(false);
   });
 
 
