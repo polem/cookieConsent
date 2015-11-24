@@ -34,5 +34,8 @@
     "karma-jasmine": "^0.3.6",
     "karma-jasmine-jquery": "^0.1.1",
     "karma-jquery": "^0.1.0"
+  },
+  "dependencies": {
+    "gulp-autoprefixer": "^3.1.0"
   }
 }

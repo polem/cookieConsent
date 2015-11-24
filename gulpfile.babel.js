@@ -15,6 +15,10 @@ gulp.task('scripts', () => {
 gulp.task('styles', () => {
   return gulp.src('src/*.scss')
   .pipe($.sass().on('error', $.sass.logError))
+  .pipe($.autoprefixer({
+    browsers: ['last 2 versions'],
+    cascade: false
+  }))
   .pipe(gulp.dest('dist'));
 });
 

@@ -1,5 +1,6 @@
 .cookie-consent-banner {
   transition: all 0.2s;
+  -webkit-transform: translate3d(0, 50px, 0);
   transform: translate3d(0, 50px, 0);
   position: fixed;
   bottom: 0;
@@ -10,4 +11,5 @@
   .cookie-consent-banner a, .cookie-consent-banner {
     color: white; }
   .cookie-consent-banner.show {
+    -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0); }
