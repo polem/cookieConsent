@@ -106,7 +106,6 @@
   };
 
   ConsentManager.prototype.hasConsent = function() {
-  console.log(this.getConsent());
     return this.getConsent() === true;
   };
 
